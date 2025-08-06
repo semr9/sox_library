@@ -1,4 +1,4 @@
-import { businessEventsClient } from '@dynatrace-sdk/client-classic-environment-v2';
+// import { businessEventsClient } from '@dynatrace-sdk/client-classic-environment-v2';
 
 async function createBusinessEvent(
     error_category,
