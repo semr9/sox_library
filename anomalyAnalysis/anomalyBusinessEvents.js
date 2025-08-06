@@ -28,17 +28,20 @@ export async function createBusinessEvent(
         }
     };
 
-    console.log("bizevent", bizevent);
+    // console.log("bizevent", bizevent);
 
-    try {
-        await businessEventsClient.ingest({
-            body: bizevent,
-            type: 'application/cloudevent+json',
-        });
-        console.log('Anomaly event ingested:');
-    } catch (e) {
-        console.error('Failed to ingest anomaly event:', e);
-    }
+    // try {
+    //     await businessEventsClient.ingest({
+    //         body: bizevent,
+    //         type: 'application/cloudevent+json',
+    //     });
+    //     console.log('Anomaly event ingested:');
+    // } catch (e) {
+    //     console.error('Failed to ingest anomaly event:', e);
+    // }
+    console.log("Anomaly event ingested");  
+    console.log("bizevent", bizevent);
+    console.log("--------------------------------");
     return true;
 }
 
