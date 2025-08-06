@@ -1,6 +1,6 @@
 import { businessEventsClient } from '@dynatrace-sdk/client-classic-environment-v2';
 
-export async function createBusinessEvent(
+async function createBusinessEvent(
     error_category,
     event_type,
     sox_transaction_id,
@@ -45,7 +45,7 @@ export async function createBusinessEvent(
     return true;
 }
 
-
+export default createBusinessEvent;
 // error_category  => Error | ok
 // event_type => Missing Timestamp | Invalid Log Format | Missing Field | Missing Value | Invalid Field Format | Field Variations
 // sox_transaction_id => transaction_id
