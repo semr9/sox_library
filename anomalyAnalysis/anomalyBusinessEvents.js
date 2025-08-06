@@ -58,13 +58,3 @@ export async function createBusinessEvent(
 // valueFrom => sourceData
 // valueTo => destinationData
 
-
-"Error",
-"Missing Timestamp",
-transaction_id,
-integration["sox_integration"],
-next_integration ? next_integration["sox_integration"] : "-",
-"-",
-null,
-"-",
-"-"
