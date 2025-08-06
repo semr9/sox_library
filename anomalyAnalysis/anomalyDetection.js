@@ -172,7 +172,7 @@ const fieldOrValueFormatAnomaly = async (integration, transaction_id, next_integ
             hasErrors = true;
             errors["Invalid Field Format"].paths.push(path);
             errors["Invalid Field Format"].values.push(value);
-        } else if (next_integration && checkFieldVariations(value, paths_next_integration[path])) {
+        } else if (next_integration && paths_next_integration[path] != null && checkFieldVariations(value, paths_next_integration[path])) {
             hasErrors = true;
             errors["Field Variations"].paths.push(path);
             errors["Field Variations"].sourceValues.push(value);
@@ -213,27 +213,30 @@ async function anomalyAnalysis(records, requiredFields){
             const integration = integrations[j];
             const next_integration = j + 1 < integrations.length ? integrations[j + 1] : null;
 
-            if ( callMissingTimestampAnomaly(integration, transaction_id, next_integration)) {
-                break;
-            } else if ( callInvalidLogFormatAnomaly(integration, transaction_id, next_integration)) {
-                break;
-            } else if ( callErrorAnomaly(integration, transaction_id, next_integration)) {
-                break;
-            } else if( fieldOrValueFormatAnomaly(integration, transaction_id, next_integration, requiredFields[j])) {
-                break;
-            } else {
-                await createBusinessEvent(
-                    "OK",
-                    "Successful",
-                    transaction_id,
-                    integration["sox_integration"],
-                    next_integration ? next_integration["sox_integration"] : "-",
-                    "-",
-                    integration["sox_transaction_timestamp"],
-                    "-",
-                    "-"
-                );
-            }
+            console.log("integration", integration);
+            console.log("next_integration", next_integration);
+
+            // if ( callMissingTimestampAnomaly(integration, transaction_id, next_integration)) {
+            //     break;
+            // } else if ( callInvalidLogFormatAnomaly(integration, transaction_id, next_integration)) {
+            //     break;
+            // } else if ( callErrorAnomaly(integration, transaction_id, next_integration)) {
+            //     break;
+            // } else if( fieldOrValueFormatAnomaly(integration, transaction_id, next_integration, requiredFields[j])) {
+            //     break;
+            // } else {
+            //     await createBusinessEvent(
+            //         "OK",
+            //         "Successful",
+            //         transaction_id,
+            //         integration["sox_integration"],
+            //         next_integration ? next_integration["sox_integration"] : "-",
+            //         "-",
+            //         integration["sox_transaction_timestamp"],
+            //         "-",
+            //         "-"
+            //     );
+            // }
         }
     }
 }
