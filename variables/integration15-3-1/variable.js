@@ -1,8 +1,8 @@
 import patterns from '../patterns.js';
 
-const requiredFields = {
+const requiredFieldsIntegration15_3_1 = {
     "confirmationIds<array1>.value": patterns.alphanumericUppercase,
     "propertyCode": patterns.alphanumericUppercase
   } 
 
-  export default requiredFields;
+  export default requiredFieldsIntegration15_3_1;
