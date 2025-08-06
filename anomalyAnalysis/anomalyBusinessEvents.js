@@ -1,6 +1,7 @@
 // import { businessEventsClient } from '@dynatrace-sdk/client-classic-environment-v2';
 
 async function createBusinessEvent(
+    id,
     error_category,
     event_type,
     sox_transaction_id,
@@ -13,7 +14,7 @@ async function createBusinessEvent(
 ) {
     const bizevent = {
         specversion: "1.0",
-        id: crypto.randomUUID(),
+        id: id,
         source: "sox",
         type: event_type,
         category: error_category,

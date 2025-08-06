@@ -71,6 +71,7 @@ const callErrorAnomaly = async (integration, transaction_id, next_integration) =
         return false;
     }else{
         await createBusinessEvent(
+            crypto.randomUUID(),
             "Error",
             "Call Error",
             transaction_id,
@@ -116,6 +117,7 @@ const callInvalidLogFormatAnomaly = async (integration, transaction_id, next_int
     let response = false;
     if (Object.keys(errorSummary).length > 0) {
         await createBusinessEvent(
+            crypto.randomUUID(),
             "Error",
             "Invalid Log Format",
             transaction_id,
@@ -215,6 +217,7 @@ async function anomalyAnalysis(records, requiredFields){
 
             console.log("integration", integration);
             console.log("next_integration", next_integration);
+            event_id = crypto.randomUUID();
 
             // if ( callMissingTimestampAnomaly(integration, transaction_id, next_integration)) {
             //     break;
