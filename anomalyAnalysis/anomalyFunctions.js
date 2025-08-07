@@ -1,6 +1,6 @@
 const callMissingTimestampAnomaly = async (id, transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent) => {
     const timestamp = integration["sox_transaction_timestamp"];
-
+    console.log("timestamp", timestamp);
     if (timestamp == null){
         const bizevent = await createAnomalyEvent(
             id,

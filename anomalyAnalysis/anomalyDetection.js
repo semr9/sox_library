@@ -5,9 +5,9 @@ import  patterns  from "https://raw.githubusercontent.com/semr9/sox_library/refs
 import  requiredFieldsIntegration15_3_1  from "https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/variables/integration15-3-1/variable.js"
 import  requiredFieldsIntegration15_3_2  from "https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/variables/integration15-3-2/variable.js"
 
-import { createAnomalyEvent, callMissingTimestampAnomaly, callErrorAnomaly, callInvalidLogFormatAnomaly, 
+import {  callMissingTimestampAnomaly, callErrorAnomaly, callInvalidLogFormatAnomaly, 
     fieldOrValueFormatAnomaly, successEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/anomalyFunctions.js';
-import { normalizePath, getPathDict, createAnomalyEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/utilityFucntions.js';
+import {  getPathDict, createAnomalyEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/utilityFucntions.js';
 
 const   createBusinessEvent = async (bizevent) => {
   console.log("bizevent::", bizevent)
