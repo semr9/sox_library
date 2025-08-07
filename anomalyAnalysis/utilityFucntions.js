@@ -63,4 +63,25 @@ async function createAnomalyEvent(
    
 }
 
-export { normalizePath, getPathDict, createAnomalyEvent };
+const transformPatterns = (stringPatterns) => {
+    const transformed = {};
+    for (const [key, value] of Object.entries(stringPatterns)) {
+      if (typeof value === 'string') {
+        // Check if it's already a RegExp string format
+        if (value.startsWith('/') && value.endsWith('/')) {
+          // Extract the pattern and flags
+          const pattern = value.slice(1, -1);
+          transformed[key] = new RegExp(pattern);
+        } else {
+          // Treat as plain string pattern
+          transformed[key] = new RegExp(value);
+        }
+      } else {
+        // If it's already a RegExp, keep it as is
+        transformed[key] = value;
+      }
+    }
+    return transformed;
+  };
+
+export { normalizePath, getPathDict, createAnomalyEvent , transformPatterns};
