@@ -7,7 +7,7 @@ import  requiredFieldsIntegration15_3_2  from "https://raw.githubusercontent.com
 
 import {  callMissingTimestampAnomaly, callErrorAnomaly, callInvalidLogFormatAnomaly, 
     fieldOrValueFormatAnomaly, successEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/anomalyFunctions.js';
-import {  getPathDict, createAnomalyEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/utilityFucntions.js';
+import {  getPathDict, createAnomalyEvent, transformPatterns } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/utilityFucntions.js';
 
 const   createBusinessEvent = async (bizevent) => {
   console.log("bizevent::", bizevent)
@@ -46,7 +46,7 @@ export default async function ({ execution_id }) {
 
             if ( await callMissingTimestampAnomaly(crypto.randomUUID(),  transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;
-            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns)) {
+            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns, transformPatterns)) {
                 break;
             } else if ( await callErrorAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;
