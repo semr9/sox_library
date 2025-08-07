@@ -44,18 +44,19 @@ export default async function ({ execution_id }) {
             console.log("integration", integration);
             console.log("next_integration", next_integration);
 
-            if ( await callMissingTimestampAnomaly(crypto.randomUUID(), integration, transaction_id, next_integration, createAnomalyEvent, createBusinessEvent)) {
+            if ( await callMissingTimestampAnomaly(crypto.randomUUID(),  transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;
-            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), integration, transaction_id, next_integration, createAnomalyEvent, createBusinessEvent, patterns)) {
+            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns)) {
                 break;
-            } else if ( await callErrorAnomaly(crypto.randomUUID(), integration, transaction_id, next_integration, createAnomalyEvent, createBusinessEvent)) {
+            } else if ( await callErrorAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;
-            } else if( await fieldOrValueFormatAnomaly(crypto.randomUUID(), integration, transaction_id, next_integration, requiredFields[j], getPathDict, createAnomalyEvent, createBusinessEvent)) {
+            } else if( await fieldOrValueFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, requiredFields[j], getPathDict, createAnomalyEvent, createBusinessEvent)) {
                 break;
             } else {
-                await successEvent(crypto.randomUUID(), integration, transaction_id, next_integration, createAnomalyEvent, createBusinessEvent);
+                await successEvent(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent);
                 break;
             }
         }
     }
 }
+
