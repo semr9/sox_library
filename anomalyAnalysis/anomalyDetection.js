@@ -9,6 +9,9 @@ import {  callMissingTimestampAnomaly, callErrorAnomaly, callInvalidLogFormatAno
     fieldOrValueFormatAnomaly, successEvent } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/anomalyFunctions.js';
 import {  getPathDict, createAnomalyEvent, transformPatterns } from 'https://raw.githubusercontent.com/semr9/sox_library/refs/heads/main/anomalyAnalysis/utilityFucntions.js';
 
+
+const newPatterns = transformPatterns(patterns);
+
 const   createBusinessEvent = async (bizevent) => {
   console.log("bizevent::", bizevent)
    try {
@@ -46,7 +49,7 @@ export default async function ({ execution_id }) {
 
             if ( await callMissingTimestampAnomaly(crypto.randomUUID(),  transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;
-            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns, transformPatterns)) {
+            } else if ( await callInvalidLogFormatAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent,  newPatterns)) {
                 break;
             } else if ( await callErrorAnomaly(crypto.randomUUID(), transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent)) {
                 break;

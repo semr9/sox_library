@@ -57,14 +57,14 @@ const callErrorAnomaly = async (id, transaction_id, integration, next_integratio
     }
 };
 
-const callInvalidLogFormatAnomaly = async (id, transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns, transformPatterns) => {
+const callInvalidLogFormatAnomaly = async (id, transaction_id, integration, next_integration, createAnomalyEvent, createBusinessEvent, patterns) => {
     let errorSummary = {};
     if ( integration["sox_integration"] == null){
         errorSummary["Missing Integration Id"] = { paths: ["sox_integration"], values: [null] };
     }else{
         // Check if integration ID format is correct
         const integrationId = integration["sox_integration"];
-        if (!transformPatterns(patterns["alphanumericUppercase"]).test(String(integrationId))) {
+        if (!patterns["alphanumericUppercase"].test(String(integrationId))) {
             errorSummary["Invalid Integration Id Format"] = { paths: ["sox_integration"], values: [integrationId] };
         }
     }
@@ -78,7 +78,7 @@ const callInvalidLogFormatAnomaly = async (id, transaction_id, integration, next
     }else{
         // Check if transaction ID format is correct
         const transactionId = integration["sox_transaction_id"];
-        if (!transformPatterns(patterns["transactionId"]).test(String(transactionId))) {
+        if (!patterns["transactionId"].test(String(transactionId))) {
             errorSummary["Invalid Transaction Id Format"] = { paths: ["sox_transaction_id"], values: [transactionId] };
         }
     }
